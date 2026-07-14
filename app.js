@@ -152,9 +152,45 @@ function initContactValidation() {
     }
 
     if (isValid) {
-      successBanner.innerText = "Message validated and compiled successfully!";
+      // Show a loading state
+      successBanner.innerText = "Sending your message...";
+      successBanner.style.backgroundColor = "#fbbf24"; // Yellow loading color
+      successBanner.style.color = "#451a03";
       successBanner.style.display = "block";
-      form.submit();
+
+      // 1. Gather all the data from the form
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      // 2. Send it to FormSubmit's special AJAX endpoint (notice the /ajax/ in the URL)
+      fetch("https://formsubmit.co/ajax/v.omorogbe1674@miva.edu.ng", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((result) => {
+          if (result.success === "true" || result.success === true) {
+            // Show success message
+            successBanner.innerText = "Message sent successfully!";
+            successBanner.style.backgroundColor = "#166534"; // Green success color
+            successBanner.style.color = "#bbf7d0";
+            form.reset();
+          } else {
+            throw new Error("FormSubmit rejected the submission.");
+          }
+        })
+        .catch((error) => {
+          // Show error message
+          successBanner.innerText =
+            "Oops! Something went wrong. Please try again.";
+          successBanner.style.backgroundColor = "#991b1b"; // Red error color
+          successBanner.style.color = "#fecaca";
+          console.error(error);
+        });
     }
   });
 }
