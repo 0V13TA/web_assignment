@@ -154,7 +154,7 @@ function initContactValidation() {
     if (isValid) {
       // Show a loading state
       successBanner.innerText = "Sending your message...";
-      successBanner.style.backgroundColor = "#fbbf24"; // Yellow loading color
+      successBanner.style.backgroundColor = "#fbbf24";
       successBanner.style.color = "#451a03";
       successBanner.style.display = "block";
 
@@ -162,7 +162,10 @@ function initContactValidation() {
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
-      // 2. Send it to FormSubmit's special AJAX endpoint (notice the /ajax/ in the URL)
+      // NEW: Tell FormSubmit to disable the CAPTCHA challenge for this AJAX request
+      data._captcha = "false";
+
+      // 2. Send it to FormSubmit's AJAX endpoint
       fetch("https://formsubmit.co/ajax/v.omorogbe1674@miva.edu.ng", {
         method: "POST",
         headers: {
@@ -171,23 +174,36 @@ function initContactValidation() {
         },
         body: JSON.stringify(data),
       })
-        .then((response) => response.json())
+        .then(async (response) => {
+          // NEW: Read the response as raw text first to prevent JSON parse errors
+          const text = await response.text();
+          try {
+            return JSON.parse(text);
+          } catch (err) {
+            console.error("FormSubmit returned non-JSON response:", text);
+            throw new Error(
+              "FormSubmit returned HTML. Check your email for an activation link.",
+            );
+          }
+        })
         .then((result) => {
           if (result.success === "true" || result.success === true) {
             // Show success message
             successBanner.innerText = "Message sent successfully!";
-            successBanner.style.backgroundColor = "#166534"; // Green success color
+            successBanner.style.backgroundColor = "#166534";
             successBanner.style.color = "#bbf7d0";
             form.reset();
           } else {
-            throw new Error("FormSubmit rejected the submission.");
+            throw new Error(
+              result.message || "FormSubmit rejected the submission.",
+            );
           }
         })
         .catch((error) => {
           // Show error message
           successBanner.innerText =
-            "Oops! Something went wrong. Please try again.";
-          successBanner.style.backgroundColor = "#991b1b"; // Red error color
+            "Error: Check the console or your email for activation.";
+          successBanner.style.backgroundColor = "#991b1b";
           successBanner.style.color = "#fecaca";
           console.error(error);
         });
