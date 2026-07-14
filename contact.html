@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact | Vincentpaul Omorogbe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">VO</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="planner.html">Planner</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="contact-section">
+        <h1>Send a Message</h1>
+        <p class="subtitle">
+          Drop me a line if you want to collaborate on graphics tools or web
+          backends.
+        </p>
+
+        <form
+          id="contact-form"
+          class="contact-form"
+          method="POST"
+          action="https://formsubmit.co/v.omorogbe1674@miva.edu.ng"
+          novalidate
+        >
+          <input type="hidden" name="_captcha" value="false" />
+          <input
+            type="hidden"
+            name="_next"
+            value="http://localhost:8080/contact.html"
+          />
+          <div class="form-group">
+            <label for="user-name">Full Name</label>
+            <input
+              type="text"
+              id="user-name"
+              name="username"
+              placeholder="John Doe"
+            />
+            <span class="error-msg" id="name-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="user-email">Email Address</label>
+            <input
+              type="email"
+              id="user-email"
+              name="email"
+              placeholder="john@example.com"
+            />
+            <span class="error-msg" id="email-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="user-phone">Phone Number</label>
+            <input
+              type="tel"
+              id="user-phone"
+              name="phone number"
+              placeholder="08012345678"
+            />
+            <span class="error-msg" id="phone-error"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="user-message">Your Message</label>
+            <textarea
+              id="user-message"
+              rows="5"
+              name="message"
+              placeholder="Let's build something efficient..."
+            ></textarea>
+            <span class="error-msg" id="message-error"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Submit Form</button>
+          <div id="form-success" class="success-banner"></div>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Vincentpaul Idabholen Omorogbe. All Rights Reserved.</p>
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>

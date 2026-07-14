@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects | Vincentpaul Omorogbe</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">VO</div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Me</a></li>
+          <li><a href="projects.html" class="active">Projects</a></li>
+          <li><a href="planner.html">Planner</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="container">
+      <h1>Featured Technical Projects</h1>
+      <p class="subtitle">
+        A selection of my systems programming and full-stack web applications.
+      </p>
+
+      <section class="projects-grid">
+        <!-- Project 1 -->
+        <article class="project-card">
+          <img
+            src="./orc_engine.png"
+            alt="ORC Engine Screenshot"
+            class="project-img"
+          />
+          <div class="project-info">
+            <h3>ORC (Graphics & Simulation Engine)</h3>
+            <p>
+              A custom graphics rendering pipeline migrated from a 2D raycaster
+              to a complete 3D BSP-driven pipeline using WebGL2. Features true
+              Z-coordinates, billboarded sprites, and custom convex/concave
+              sector drawing tools.
+            </p>
+            <a
+              href="https://github.com/0V13TA/ORC"
+              target="_blank"
+              class="project-link"
+              >View Source Code &rarr;</a
+            >
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <img
+            src="./asteroids.png"
+            alt="Asteroids Game Screenshot"
+            class="project-img"
+          />
+          <div class="project-info">
+            <h3>Asteroids Game Using ECS</h3>
+            <p>
+              A simple Asteroids game built with vanilla JavaScript and HTML5
+              Canvas, this is an implementation of the Entity-Component-System
+              (ECS) architecture. It features a modular design, allowing for
+              easy addition of new entities, components, and systems. The game
+              includes player-controlled spaceship, asteroids, and shooting
+              mechanics.
+            </p>
+            <a
+              href="https://github.com/0V13TA/coding-challenges/tree/main/asteroids"
+              target="_blank"
+              class="project-link"
+              >View Source Code &rarr;</a
+            >
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <img
+            src="./maps.png"
+            alt="Map Editor For ORC Engine"
+            class="project-img"
+          />
+          <div class="project-info">
+            <h3>Map Editor For ORC Engine</h3>
+            <p>
+              A map editor built with vanilla JavaScript and HTML5 Canvas for
+              the ORC Engine. Allows users to create and edit 2D and 3D maps
+              with support for convex and concave sectors, texture mapping, and
+              sprite placement. and uses half edge data structures to find faces
+              of closed shapes.
+            </p>
+            <a
+              href="https://github.com/0V13TA/map"
+              target="_blank"
+              class="project-link"
+              >View Source Code &rarr;</a
+            >
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2026 Vincentpaul Idabholen Omorogbe. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>
